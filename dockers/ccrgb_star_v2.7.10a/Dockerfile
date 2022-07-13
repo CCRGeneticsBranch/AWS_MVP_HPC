@@ -1,12 +1,23 @@
 FROM nciccbr/ccbr_ubuntu_base_20.04:v1.4
 
+ENV STAR_VERSION ${STAR_VERSION}
+ENV RSEM_VERSION 1.3.3
+
 # install star
 WORKDIR /opt2
-RUN wget https://github.com/alexdobin/STAR/archive/2.7.10a.tar.gz
-RUN tar -xzf 2.7.10a.tar.gz
-WORKDIR /opt2/STAR-2.7.10a/source
+RUN wget --no-check-certificate https://github.com/alexdobin/STAR/archive/${STAR_VERSION}.tar.gz
+RUN tar -xzf ${STAR_VERSION}.tar.gz
+WORKDIR /opt2/STAR-${STAR_VERSION}/source
 RUN make STAR
-ENV PATH="/opt2/STAR-2.7.10a/source":$PATH
+ENV PATH="/opt2/STAR-${STAR_VERSION}/source":$PATH
+
+# install rsem
+RUN wget --no-check-certificate https://github.com/deweylab/RSEM/archive/refs/tags/v${RSEM_VERSION}.tar.gz
+RUN tar -xzf v${RSEM_VERSION}.tar.gz
+WORKDIR /home/RSEM-${RSEM_VERSION}
+RUN make
+RUN make ebseq
+ENV PATH="/home/RSEM-${RSEM_VERSION}":$PATH
 
 # cleanup etc
 COPY Dockerfile /opt2/Dockerfile
