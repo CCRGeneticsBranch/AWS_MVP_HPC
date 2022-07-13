@@ -12,12 +12,13 @@ RUN make STAR
 ENV PATH="/opt2/STAR-${STAR_VERSION}/source":$PATH
 
 # install rsem
+WORKDIR /opt2
 RUN wget --no-check-certificate https://github.com/deweylab/RSEM/archive/refs/tags/v${RSEM_VERSION}.tar.gz
 RUN tar -xzf v${RSEM_VERSION}.tar.gz
-WORKDIR /home/RSEM-${RSEM_VERSION}
+WORKDIR /opt2/RSEM-${RSEM_VERSION}
 RUN make
 RUN make ebseq
-ENV PATH="/home/RSEM-${RSEM_VERSION}":$PATH
+ENV PATH="/opt2/RSEM-${RSEM_VERSION}":$PATH
 
 # cleanup etc
 COPY Dockerfile /opt2/Dockerfile
