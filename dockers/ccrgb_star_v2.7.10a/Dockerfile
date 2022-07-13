@@ -22,7 +22,7 @@ ENV PATH="/opt2/RSEM-${RSEM_VERSION}":$PATH
 
 # cleanup etc
 COPY Dockerfile /opt2/Dockerfile
-RUN chmod -R a+rX /opt2
+RUN chmod a+rX /opt2/Dockerfile
 WORKDIR /data2
 RUN apt-get clean
 
