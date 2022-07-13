@@ -3,6 +3,7 @@
 if [ "$#" != "2" ];
 then
 echo "USAGE: $0 <dockerfile> <tag>"
+exit
 fi
 
 dt=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
