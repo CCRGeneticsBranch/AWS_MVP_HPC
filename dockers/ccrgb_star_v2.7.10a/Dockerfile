@@ -1,6 +1,6 @@
 FROM nciccbr/ccbr_ubuntu_base_20.04:v1.4
 
-ENV STAR_VERSION ${STAR_VERSION}
+ENV STAR_VERSION 2.7.10a
 ENV RSEM_VERSION 1.3.3
 
 # install star
