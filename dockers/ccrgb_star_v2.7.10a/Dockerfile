@@ -24,3 +24,9 @@ COPY Dockerfile /opt2/Dockerfile
 RUN chmod -R a+rX /opt2
 WORKDIR /data2
 RUN apt-get clean
+
+# details
+LABEL maintainer="vishal.koparde@nih.gov"
+LABEL github_handle="kopardev"
+ARG BUILD_DATE
+LABEL build_date=$BUILD_DATE
